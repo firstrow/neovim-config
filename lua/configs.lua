@@ -34,9 +34,11 @@ set.undodir = vim.fn.stdpath("config") .. "/undo"
 set.clipboard = set.clipboard + "unnamedplus" -- copy & paste
 set.wrap = false -- don't automatically wrap on load
 set.showmatch = true -- show the matching part of the pair for [] {} and ()
-set.cursorline = true -- highlight current line
+
+set.cursorline = false -- highlight current line
 set.number = false -- show line numbers
 set.relativenumber = false -- show relative line number
+
 set.hlsearch = true -- highlighted search results
 set.incsearch = true -- incremental search
 set.ignorecase = true -- ignore case sensetive while searching

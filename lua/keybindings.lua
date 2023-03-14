@@ -15,7 +15,11 @@ vim.keymap.set('n', '<leader>3', function() harpoon_ui.nav_file(3) end, {})
 
 -- buffers
 vim.keymap.set('n', '<leader>`', "<C-6>", {}) -- toggle buffer
-vim.keymap.set('n', '<leader>bk', "<cmd>bd<cr>", {})
+
+vim.keymap.set('n', '<leader>bk', function ()
+    require('bufdelete').bufdelete(0, true)
+end, {})
+
 vim.keymap.set('n', '<leader>bb', builtin.buffers, {})
 vim.keymap.set('n', ';', builtin.buffers, {})
 
@@ -60,6 +64,7 @@ vim.keymap.set("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definit
 vim.keymap.set("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<cr>", {noremap=true})
 
 vim.keymap.set("n", "<f2>", "<cmd>w<cr>", {noremap=true})
+vim.keymap.set("n", "<leader>dd", "<cmd>Ex<cr>", {noremap=true})
 
 local tmux_run_make = function()
     vim.api.nvim_command('write')
