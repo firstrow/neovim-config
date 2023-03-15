@@ -16,7 +16,7 @@ vim.keymap.set('n', '<leader>3', function() harpoon_ui.nav_file(3) end, {})
 -- buffers
 vim.keymap.set('n', '<leader>`', "<C-6>", {}) -- toggle buffer
 
-vim.keymap.set('n', '<leader>bk', function ()
+vim.keymap.set('n', '<leader>bk', function()
     require('bufdelete').bufdelete(0, true)
 end, {})
 
@@ -24,10 +24,13 @@ vim.keymap.set('n', '<leader>bb', builtin.buffers, {})
 vim.keymap.set('n', ';', builtin.buffers, {})
 
 -- vim.keymap.set('n', '<leader>fr', builtin.oldfiles, {})
-vim.keymap.set("n", "<leader>pr", "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>pr", "<cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>",
+    { noremap = true, silent = true })
 -- vim.keymap.set("n", "<leader>fr", "<cmd>lua require('telescope').extensions.frecency.frecency({ previewer = false })<CR>", {noremap = true, silent = true})
-vim.keymap.set("n", "<leader>ss", "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case previewer=true<CR>")
-vim.keymap.set("n", "<leader>fr", "<cmd>Telescope frecency theme=dropdown previewer=false <CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>ss",
+    "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case previewer=true<CR>")
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope frecency theme=dropdown previewer=false <CR>",
+    { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
@@ -54,23 +57,30 @@ map("n", "<leader>vsd", "<cmd>lua vim.diagnostic.open_float({scope='line'})<CR>"
 map("n", "<leader>vn", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 map("n", "<leader>vp", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 
-vim.keymap.set("n", "<leader>gg", function() neogit.open({ kind="vsplit"}) end, {})
+vim.keymap.set("n", "<leader>gg", function() neogit.open({ kind = "vsplit" }) end, {})
 
 -- map('n', '<leader>a', ':vsplit |lua vim.lsp.buf.definition()<CR>')
 -- map('n', '<leader>v', ':vsplit | lua vim.lsp.buf.definition()<CR>')
 -- map('n', '<leader>s', ':belowright split | lua vim.lsp.buf.definition()<CR>')
-map('n', 'go', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<cr>', {noremap=true, silent=true})
-vim.keymap.set("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", {noremap=true})
-vim.keymap.set("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<cr>", {noremap=true})
+map('n', 'go', '<cmd>lua require"telescope.builtin".lsp_definitions({jump_type="vsplit"})<cr>',
+    { noremap = true, silent = true })
+vim.keymap.set("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", { noremap = true })
+vim.keymap.set("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<cr>", { noremap = true })
 
-vim.keymap.set("n", "<f2>", "<cmd>w<cr>", {noremap=true})
-vim.keymap.set("n", "<leader>dd", "<cmd>Ex<cr>", {noremap=true})
+vim.keymap.set("n", "<f2>", function()
+    local filename = vim.fn.expand('%:h')
+    if string.find(filename, ".c") then
+        vim.lsp.buf.format()
+    end
+    vim.cmd("w")
+end, { noremap = true })
+vim.keymap.set("n", "<leader>dd", "<cmd>Ex<cr>", { noremap = true })
 
 local tmux_run_make = function()
     vim.api.nvim_command('write')
     -- (format "tmux send-keys -t %s:%s.%s '%s' Enter" tmux-session-name tmux-window-name tmux-pane-name command)))
     vim.fn.jobstart(
-        "tmux send-keys -t dev:1.1 'make run' Enter", 
+        "tmux send-keys -t dev:1.1 'make run' Enter",
         {
             cwd = vim.fn.getcwd()
         }
@@ -78,4 +88,3 @@ local tmux_run_make = function()
 end
 
 vim.keymap.set("n", "<f5>", tmux_run_make, {})
-
