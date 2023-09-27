@@ -33,6 +33,11 @@ end
 require'lspconfig'.clangd.setup{
   on_attach = on_attach
 }
+
 require'lspconfig'.lua_ls.setup{
+  on_attach = on_attach
+}
+
+require'lspconfig'.zls.setup{
   on_attach = on_attach
 }

@@ -11,7 +11,7 @@ cmd("colorscheme habamax")
 -- cmd("colorscheme slate")
 
 set.guifont = "Iosevka Medium:h10"
-set.guifont = "Iosevka Heavy:h10"
+set.guifont = "Iosevka Heavy:h12"
 
 set.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
 set.list = false         -- show whitespace
@@ -25,9 +25,9 @@ set.listchars = {
 }
 set.fillchars = {
     diff = "∙", -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-    eob = " ", -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
+    eob = " ",  -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
     fold = "·", -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-    vert = " " -- remove ugly vertical lines on window division
+    vert = " "  -- remove ugly vertical lines on window division
 }
 set.undofile = true
 set.undodir = vim.fn.stdpath("config") .. "/undo"

@@ -32,7 +32,6 @@ require("telescope").setup {
     find_files = {
         find_command = {"rg", "--files", "--hidden", "--ignore-file", ".next", "--ignore-file", "out"},
         previewer = false,
-        theme = "dropdown",
     },
     file_browser = {
         hidden = true,
@@ -46,9 +45,11 @@ require("telescope").setup {
     },
     oldfiles = {
         previewer = false,
-        theme = "dropdown",
+    },
+    colorscheme = {
+      enable_preview = true
     }
-  },
+},
   extensions = {
     project = {
       fzf = {
